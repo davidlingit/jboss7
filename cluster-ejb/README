@@ -1,0 +1,10 @@
+EJB clustering example using remote clustered stateful and stateless session bean.
+Client waits 3 seconds to call the EJB.
+Run two server instance with commands
+server1/standalone.sh -c standalone-ha.xml  -Djboss.node.name=jboss1 
+server2/standalone.sh -c standalone-ha.xml  -Djboss.node.name=jboss2 -Djboss.socket.binding.port-offset=100
+
+When one server is shutdown, the client will continue to process to the clustered server without throwing exception back to the client.
+The code is tested using JBoss 7.2 and JBoss EAP 6.1.
+Since there are ejb client bugs found in these two releases, please upgrade the modules to use jboss-ejb-client 1.0.22.Final
+and jboss-remoting 3.2.16.GA.
